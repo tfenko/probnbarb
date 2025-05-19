@@ -66,22 +66,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentIndexGallery = 0;
 
-  function showSlideGallery(index) {
-    if (index < 0) index = items.length - 1;
-    if (index >= items.length) index = 0;
+  function getItemsPerView() {
+    return window.innerWidth <= 480 ? 1 : 3;
+  }
 
-    // Скидання прокрутки при досягненні останнього слайда (опційно)
-    if (index === 7) {
-      setTimeout(() => {
-        carousel.style.transition = 'transform 0.3s ease-in-out';
-        carousel.style.transform = `translateX(0%)`;
-        currentIndexGallery = 0;
-      }, 300);
-    } else {
-      carousel.style.transition = 'transform 0.3s ease-in-out';
-      carousel.style.transform = `translateX(-${index * 33.33}%)`;
-      currentIndexGallery = index;
-    }
+  function showSlideGallery(index) {
+    const itemsPerView = getItemsPerView();
+    if (index < 0) index = items.length - itemsPerView;
+    if (index > items.length - itemsPerView) index = 0;
+
+    const shiftPercent = (100 / itemsPerView) * index;
+    carousel.style.transition = 'transform 0.3s ease-in-out';
+    carousel.style.transform = `translateX(-${shiftPercent}%)`;
+    currentIndexGallery = index;
   }
 
   galleryBtnPrev.addEventListener('click', () => {
@@ -92,9 +89,18 @@ document.addEventListener("DOMContentLoaded", () => {
     showSlideGallery(currentIndexGallery + 1);
   });
 
+  window.addEventListener('resize', () => {
+    // При зміні розміру скидаємо показ на перший слайд, щоб уникнути помилок
+    showSlideGallery(0);
+  });
+
+  // Автоматичне листання
   setInterval(() => {
     showSlideGallery(currentIndexGallery + 1);
-  }, 5000);
+  }, 200000);
+
+  // Початковий показ
+  showSlideGallery(0);
 
   // ============================
   // Карусель для команди
@@ -106,28 +112,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (btnPrevTeam && btnNextTeam && teamTrack && teamMembers.length > 0) {
     let currentTeamIndex = 0;
-    const visibleTeamCount = 3;
+
+    function getVisibleTeamCount() {
+      return window.innerWidth <= 480 ? 1 : 3;
+    }
 
     function updateTeamCarousel() {
+      const visibleTeamCount = getVisibleTeamCount();
+      // Обмежуємо currentTeamIndex, якщо потрібно
+      if (currentTeamIndex > teamMembers.length - visibleTeamCount) {
+        currentTeamIndex = teamMembers.length - visibleTeamCount;
+      }
+      if (currentTeamIndex < 0) {
+        currentTeamIndex = 0;
+      }
       teamTrack.style.transform = `translateX(-${(currentTeamIndex * 100) / visibleTeamCount}%)`;
     }
 
     btnPrevTeam.addEventListener('click', () => {
-      currentTeamIndex = (currentTeamIndex - 1 + (teamMembers.length - visibleTeamCount + 1)) % (teamMembers.length - visibleTeamCount + 1);
+      currentTeamIndex -= 1;
+      if (currentTeamIndex < 0) {
+        currentTeamIndex = teamMembers.length - getVisibleTeamCount();
+      }
       updateTeamCarousel();
     });
 
     btnNextTeam.addEventListener('click', () => {
-      currentTeamIndex = (currentTeamIndex + 1) % (teamMembers.length - visibleTeamCount + 1);
+      currentTeamIndex += 1;
+      if (currentTeamIndex > teamMembers.length - getVisibleTeamCount()) {
+        currentTeamIndex = 0;
+      }
       updateTeamCarousel();
     });
 
     updateTeamCarousel();
 
     setInterval(() => {
-      currentTeamIndex = (currentTeamIndex + 1) % (teamMembers.length - visibleTeamCount + 1);
+      currentTeamIndex += 1;
+      if (currentTeamIndex > teamMembers.length - getVisibleTeamCount()) {
+        currentTeamIndex = 0;
+      }
       updateTeamCarousel();
     }, 3000);
+
+    window.addEventListener('resize', () => {
+      updateTeamCarousel();
+    });
   } else {
     console.warn('Елементи каруселі команди не знайдені!');
   }
