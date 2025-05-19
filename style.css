@@ -64,7 +64,7 @@ a:hover {
 }
 
 /* Contact button in navbar */
-.contact-btn {
+.bookNowBtnNavbar {
   background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
@@ -73,7 +73,7 @@ a:hover {
   cursor: pointer;
 }
 
-.contact-btn:hover {
+.bookNowBtnNavbar:hover {
   background-color: #45a049;
 }
 
