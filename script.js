@@ -1,3 +1,4 @@
+console.log('script.js завантажений і виконується');
 document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize AOS animation library
@@ -58,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Carousel logic
   const carousel = document.getElementById('carousel');
   const items = document.querySelectorAll('.carousel-item');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
+  const galleryBtn = document.getElementById('galleryBtn');
+  const galleryBtn2 = document.getElementById('galleryBtn2');
 
   let currentIndex1 = 0;
 
@@ -83,10 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Carousel navigation buttons
-  prevBtn.addEventListener('click', () => {
+  galleryBtn.addEventListener('click', () => {
     showSlideCarousel(currentIndex1 - 1);
   });
-  nextBtn.addEventListener('click', () => {
+  galleryBtn2.addEventListener('click', () => {
     showSlideCarousel(currentIndex1 + 1);
   });
 
@@ -170,14 +171,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Scroll to FAQ section on FAQ button click
-  document.querySelector('.faq-button').addEventListener('click', (e) => {
-    e.preventDefault();
-    const faqHeader = document.getElementById('faq-header');
-    window.scrollTo({
-      top: faqHeader.offsetTop - 20,
-      behavior: 'smooth'
-    });
-  });
+  //document.querySelector('.faq-button').addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   const faqHeader = document.getElementById('faq-header');
+  //   window.scrollTo({
+  //     top: faqHeader.offsetTop - 20,
+  //     behavior: 'smooth'
+  //   });
+  // });
 
   // Smooth scroll for all anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -199,43 +200,41 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Team carousel logic
-  const prevBtn2 = document.getElementById('prevBtn2');
-  const nextBtn2 = document.getElementById('nextBtn2');
-  const teamTrack = document.querySelector('.team-track');
-  const teamMembers = document.querySelectorAll('.team-member');
-  const totalMembers = teamMembers.length;
+ document.addEventListener('DOMContentLoaded', () => {
+  const btnPrev = document.getElementById('teamBtn');
+  const btnNext = document.getElementById('teamBtn2');
+  const track = document.querySelector('#team .team-track');
+  const members = document.querySelectorAll('#team .team-member');
 
-  let currentIndex2 = 0;
+  console.log('btnPrev:', btnPrev);
+  console.log('btnNext:', btnNext);
+  console.log('track:', track);
+  console.log('members count:', members.length);
 
-  // Show team member slide by index
-  function showSlideTeam(index) {
-    if (index < 0) {
-      currentIndex2 = totalMembers - 3;
-    } else if (index > totalMembers - 3) {
-      currentIndex2 = 0;
-    } else {
-      currentIndex2 = index;
-    }
-
-    teamTrack.style.transition = 'transform 0.3s ease-in-out';
-    teamTrack.style.transform = `translateX(-${currentIndex2 * 33.33}%)`;
+  if (!btnPrev || !btnNext || !track || members.length === 0) {
+    console.error('Не всі елементи знайдені');
+    return;
   }
 
-  // Team carousel navigation buttons
-  prevBtn2.addEventListener('click', () => {
-    showSlideTeam(currentIndex2 - 1);
+  let current = 0;
+  const visible = 3;
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${(current * 100) / visible}%)`;
+  }
+
+  btnPrev.addEventListener('click', () => {
+    current = (current - 1 + (members.length - visible + 1)) % (members.length - visible + 1);
+    updateCarousel();
   });
 
-  nextBtn2.addEventListener('click', () => {
-    showSlideTeam(currentIndex2 + 1);
+  btnNext.addEventListener('click', () => {
+    current = (current + 1) % (members.length - visible + 1);
+    updateCarousel();
   });
 
-  // Auto-slide team carousel every 3 seconds
-  setInterval(() => {
-    showSlideTeam(currentIndex2 + 1);
-  }, 3000);
-
+  updateCarousel();
+});
   // Service prices
   const prices = {
     haircut: 430,
