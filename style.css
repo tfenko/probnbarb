@@ -146,25 +146,29 @@ a:hover {
 
 #team .team-carousel {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  /* видаляємо transition звідси */
 }
 
 #team .team-track {
   display: flex;
   flex-direction: row;
+  transition: transform 0.5s ease-in-out; /* Плавна анімація трансформації */
+  will-change: transform; /* Оптимізація рендерингу */
 }
 
 #team .team-member {
-  width: 33.33%; 
-  text-align: center;
+  width: 33.33%;
   flex-shrink: 0;
+  text-align: center;
   padding: 20px;
+  box-sizing: border-box; /* Щоб padding не впливав на ширину */
 }
 
 #team .team-member img {
   width: 100%;
   height: auto;
   border-radius: 50%;
+  display: block; /* прибираємо можливі пробіли */
 }
 
 #team .team-member h3 {
@@ -187,6 +191,8 @@ a:hover {
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
+  pointer-events: none; /* Щоб кнопки не заважали іншим елементам */
+  z-index: 10;
 }
 
 #team .carousel-controls button {
@@ -196,12 +202,15 @@ a:hover {
   padding: 10px;
   cursor: pointer;
   font-size: 18px;
+  pointer-events: auto; /* Кнопки активні */
+  user-select: none; /* Відміна виділення тексту */
+  border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
 #team .carousel-controls button:hover {
   background: rgba(0, 0, 0, 0.8);
 }
-
 /* Container for content centering */
 .container {
   max-width: 1200px;
