@@ -4,12 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
   AOS.init();
 
   // Modal booking logic
-  const bookNowBtns = document.querySelectorAll("#bookNowBtn");
+  const bookNowBtnNavbar = document.querySelectorAll("#bookNowBtnNavbar");
   const modal = document.getElementById("bookingModal");
   const closeModalBtn = document.getElementById("closeModal");
 
   // Show modal on "Book Now" button click
-  bookNowBtns.forEach(button => {
+  bookNowBtnNavbar.forEach(button => {
     button.addEventListener("click", (event) => {
       event.preventDefault();
       modal.classList.add("show");
