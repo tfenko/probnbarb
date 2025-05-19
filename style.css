@@ -1,0 +1,1052 @@
+/* Base styles for body and typography */
+body {
+  background-color: #121212; /* Dark background */
+  color: #E0E0E0; /* Light text */
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Headings styling */
+h1, h2 {
+  color: #D4AF37; /* Gold color */
+  font-family: 'Bebas Neue', cursive;
+}
+
+/* Link styles */
+a {
+  color: #D4AF37;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Navbar styles */
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #1F1F1F;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 15px 30px;
+  z-index: 1000;
+}
+
+/* Logo in navbar */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #D4AF37;
+}
+
+/* Navigation links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #D4AF37;
+  font-size: 16px;
+}
+
+.nav-links li a:hover {
+  color: #b08a2e;
+}
+
+/* Contact button in navbar */
+.contact-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.contact-btn:hover {
+  background-color: #45a049;
+}
+
+/* Hero Section styles */
+.hero {
+  padding: 200px 20px 150px;
+  text-align: center;
+  background: url('images/main.jpg') no-repeat center top/cover;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+/* General button styles */
+.btn {
+  background-color: #D4AF37;
+  color: #121212;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #b08a2e;
+}
+
+/* Section wrapper */
+.section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #121212;
+  scroll-margin-top: 100px;
+}
+
+/* Section headings */
+.section h2 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 36px;
+  color: #f2c94c;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+/* Modern text style for sections */
+.modern-text {
+  font-size: 17px;
+  color: #dddddd;
+  line-height: 1.7;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Team Section Carousel */
+#team .team-carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+#team .team-carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+#team .team-track {
+  display: flex;
+  flex-direction: row;
+}
+
+#team .team-member {
+  width: 33.33%; 
+  text-align: center;
+  flex-shrink: 0;
+  padding: 20px;
+}
+
+#team .team-member img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+#team .team-member h3 {
+  margin-top: 15px;
+  font-size: 1.5rem;
+}
+
+#team .team-member p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Carousel controls for team section */
+#team .carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+#team .carousel-controls button {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#team .carousel-controls button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Container for content centering */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.modern-text .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* About section styles */
+#about {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  padding: 60px 20px;
+}
+
+#about .container {
+  width: 100%;
+  max-width: none;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+#about h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#about p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  max-width: none; 
+}
+
+/* History section styles */
+#history {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  background-color: #1f1f1f; 
+  padding: 40px 20px;
+}
+
+/* Headings for about and history */
+#about h2, #history h2 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 36px;
+  color: #f2c94c;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+/* Paragraphs for about and history */
+#about p, #history p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #E0E0E0;
+}
+
+/* Consistent button style for about and history */
+#about .btn, #history .btn {
+  background-color: #D4AF37;
+  color: #121212;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#about .btn:hover, #history .btn:hover {
+  background-color: #b08a2e;
+}
+
+/* Responsive section styles for mobile */
+@media (max-width: 768px) {
+  .section h2 {
+    font-size: 28px;
+  }
+
+  .section p {
+    font-size: 1rem;
+  }
+}
+
+/* Dropdown menu styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1F1F1F;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  min-width: 150px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  z-index: 1001;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: #E0E0E0;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #333333;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Contact Button override */
+.contact-btn {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s , color 0.3s;
+}
+
+.contact-btn:hover {
+  background-color: #b08a2e;
+  color: white; 
+}
+
+/* Prices Section styles */
+.prices-container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+/* Individual price column */
+.price-column {
+  background-color: #1f1f1f;
+  border: 2px solid orange;
+  padding: 30px 40px;
+  flex: 1 1 300px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.price-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.price-column li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid gray;
+  font-size: 22px;
+  color: white;
+}
+
+.price-column li span:first-child {
+  flex: 1;
+  text-align: left;
+}
+
+.price-column li span:last-child {
+  min-width: 120px;
+  text-align: right;
+  color: orange;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+.price-column li:last-child {
+  border-bottom: none;
+}
+
+/* Gallery section styles */
+#gallery {
+  padding: 60px 20px;
+  background-color: #121212;
+  text-align: center;
+}
+
+#gallery h2 {
+  color: #f2c94c;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+/* Gallery carousel container */
+.gallery-container {
+  overflow: hidden;
+  max-width: 100%;
+  position: relative;
+}
+
+/* Carousel styles */
+.carousel {
+  display: flex;
+  gap: 3px; 
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  max-width: 100%;
+}
+
+.carousel-item {
+  flex: 0 0 calc(33.33% - 3px); 
+  padding-bottom: calc(33.33% - 3px); 
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Carousel navigation controls */
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-controls button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-controls button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Modal styles for popups */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: #1F1F1F;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal fade-in animation */
+@keyframes fadeIn {
+  from {
+  transform: translateY(-50px);
+  opacity: 0;
+  }
+  to {
+  transform: translateY(0);
+  opacity: 1;
+  }
+}
+
+/* Close button for modal */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #D4AF37;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.close-btn:hover {
+  color: #e74c3c;
+}
+
+/* Contact Form container */
+.form-container {
+  background-color: #1F1F1F;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form-container h3 {
+  color: #f2c94c;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Input and textarea styles */
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #121212;
+  color: #E0E0E0;
+  font-size: 16px;
+}
+
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+  color: #888;
+}
+
+/* Button in form */
+.form-container button {
+  background-color: #D4AF37;
+  color: #121212;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+  background-color: #b08a2e;
+}
+
+/* Extra form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-family: 'Poppins', sans-serif;
+  color: #E0E0E0;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+input, select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #333;
+  color: #E0E0E0;
+  transition: border 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #D4AF37;
+}
+
+button[type="submit"] {
+  background-color: #D4AF37;
+  color: #121212;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #b08a2e;
+}
+
+button[type="submit"]:active {
+  background-color: #1c4f7d;
+}
+
+/* Service menu animation */
+.service-menu {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.service-menu.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive styles for navbar, hero, team, prices, and carousel */
+@media (max-width: 768px) {
+  .navbar .nav-links {
+  display: none;
+  }
+
+  .navbar.active .nav-links {
+  display: block;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  background-color: #1F1F1F;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  }
+
+  .navbar .nav-links li {
+  margin: 10px 0;
+  }
+
+  .hero h1 {
+  font-size: 36px;
+  }
+
+  .hero p {
+  font-size: 20px;
+  }
+
+  #team .team-member {
+  width: 100%;
+  margin-bottom: 20px;
+  }
+
+  .price-column {
+  flex: 1 1 100%;
+  }
+
+  .carousel {
+  flex-direction: column;
+  }
+
+  .carousel-item {
+  width: 100%;
+  padding-bottom: 100%;
+  }
+}
+
+/* Review form and reviews container */
+.review-form {
+  margin: 0 auto;
+  width: 60%; 
+  text-align: left;
+}
+
+.reviews-container {
+  margin: 0 auto; 
+  width: 60%;
+}
+
+/* Individual review styles */
+.review {
+  background: #3b3010;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-left: 4px solid #1f1905;
+  text-align: left; 
+}
+
+.review strong {
+  display: block;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+/* Rating stars */
+.rating {
+  display: flex;
+  justify-content: center; 
+  margin-bottom: 10px;
+}
+
+.rating span {
+  font-size: 24px;
+  cursor: pointer;
+  color: gray;
+  transition: color 0.2s ease;
+}
+
+.rating span.selected {
+  color: gold;
+}
+
+.stars {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Review date */
+.review .date {
+  font-size: 12px;
+  color: #888;
+  margin-top: 10px;
+}
+
+#reviews h2 {
+  text-align: center;
+}
+
+/* Utility class for center text */
+.text-center {
+  text-align: center;
+}
+
+/* Reset box-sizing and margin/padding for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body font and spacing reset */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contact section styles */
+#contact {
+  padding: 40px 20px;
+  background-color: #121212; 
+}
+
+/* Contact section header */
+.contact-header h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #D4AF37; 
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* Contact content layout */
+.contact-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Contact info box */
+.contact-info {
+  flex: 1;
+  background-color: #121212;
+  padding: 30px;
+  border-radius: 19px;
+  border: 2px solid #D4AF37;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #fff;
+  max-width: 650px;
+  height: 450px;
+  font-family: 'Arial', sans-serif;
+}
+
+.contact-info p {
+  margin: 15px 0;
+  color: #bbb;
+}
+
+.contact-info strong {
+  font-weight: bold;
+  color: #D4AF37;
+}
+
+/* Contact link button */
+.contact-info a.contact-link {
+  color: #D4AF37;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #121212;
+  border-radius: 5px;
+  border: 2px solid #D4AF37;
+}
+
+.contact-info a.contact-link:hover {
+  background-color: #D4AF37;
+  color: #fff;
+}
+
+/* Social icon styles */
+.contact-info a.social-icon {
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 15px;;
+}
+
+.contact-info a.social-icon img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.contact-info a.social-icon:hover img {
+  transform: scale(1.3);
+}
+
+/* Map iframe styles */
+.contact-map iframe {
+  width: 100%;
+  height: 450px;
+  width: 720px;
+  border-radius: 8px;
+  border: 0;
+}
+
+/* Responsive contact section */
+@media (max-width: 768px) {
+  .contact-content {
+  flex-direction: column;
+  align-items: center;
+  }
+
+  .contact-info {
+  width: 100%;
+  margin-bottom: 20px;
+  }
+
+  .contact-map iframe {
+  width: 100%;
+  height: 200px;
+  }
+}
+
+/* Review date style override */
+.review .date {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 10px;
+  text-align: left;
+}
+
+/* Service price display */
+#service-price {
+  margin-top: 15px;
+  font-size: 1.5rem;
+  color: #f2c94c;
+  font-family: 'Poppins', sans-serif; 
+  font-weight: 600;
+}
+
+#service-price strong {
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+/* Review form animation */
+.review-form {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.aos-animate .review-form {
+  opacity: 1;
+}
+
+/* Scroll padding for anchor navigation */
+html {
+  scroll-padding-top: 120px;
+}
+
+/* Prevent horizontal scroll in service section */
+#service {
+  overflow-x: hidden;
+}
+
+/* FAQ Section styles */
+.faq-section {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  background-color: #1f1f1f;
+}
+
+.faq-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* FAQ item wrapper */
+.faq {
+  padding: 1px 0;
+  margin: 0;
+}
+
+/* FAQ question styles */
+.faq-question {
+  font-size: 1.3em;
+  font-weight: bold;
+  cursor: pointer;
+  color: #111;
+  transition: color 0.3s, background-color 0.3s, transform 0.2s;
+  text-align: left;
+  margin: 0;
+  padding: 10px;
+  background-color: #D4AF37;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: auto;
+  margin: 10px auto;
+  display: block;
+}
+
+.faq-question:hover {
+  color: #4e3c03;
+  background-color: #f8e0a6;
+  transform: scale(1.05);
+}
+
+/* FAQ answer styles */
+.faq-answer {
+  display: none;
+  padding-top: 15px;
+  color: #D4AF37;
+  text-align: center;
+  margin: 0;
+  max-width: 1000px;
+  width: auto;
+  margin: 10px auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  font-size: 1.2em;
+  line-height: 1.5;
+  background-color: #D4AF37;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Show FAQ answer when active */
+.faq-answer.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FAQ spacing */
+.faq + .faq {
+  margin-top: 0;
+}
+
+.faq-answer + .faq-question {
+  margin-top: 10px;
+}
+
+/* General layout and scroll fixes */
+html, body {
+  width: 100%;
+  overflow-x: hidden; 
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Hero section width and padding override */
+.hero {
+  width: 100%;
+  padding: 200px 0 150px;
+}
+
+/* Гамбургер іконка */
+.hamburger {
+  display: none; /* ховаємо на десктопах */
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  width: 25px;
+  height: 20px;
+  justify-content: center;
+}
+
+.hamburger span {
+  height: 3px;
+  background: #D4AF37;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Показуємо гамбургер на мобільних */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+}
