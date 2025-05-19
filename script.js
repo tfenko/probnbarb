@@ -1,318 +1,1213 @@
-console.log('script.js завантажений і виконується');
+/* Base body and typography */
+body {
+  background-color: #121212;
+  color: #E0E0E0;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-  // ============================
-  // Ініціалізація AOS
-  // ============================
-  AOS.init();
+/* Headings */
+h1, h2 {
+  color: #D4AF37;
+  font-family: 'Bebas Neue', cursive;
+}
 
-  // ============================
-  // Модальне вікно "Book Now"
-  // ============================
-  const bookNowBtnNavbar = document.querySelectorAll("#bookNowBtnNavbar");
-  const modal = document.getElementById("bookingModal");
-  const closeModalBtn = document.getElementById("closeModal");
+/* Links */
+a {
+  color: #D4AF37;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 
-  bookNowBtnNavbar.forEach(button => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      modal.classList.add("show");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-  closeModalBtn.addEventListener("click", () => {
-    modal.classList.remove("show");
-    document.body.style.overflow = "auto";
-  });
-
-  window.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      modal.classList.remove("show");
-      document.body.style.overflow = "auto";
-    }
-  });
-
-  window.addEventListener("load", () => {
-    modal.classList.remove("show");
-    document.body.style.overflow = "auto";
-  });
-
-  // ============================
-  // Плавний скрол для навігації
-  // ============================
-  document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", (event) => {
-      const href = link.getAttribute("href");
-      if (href === "#") return;
-
-      const targetId = href.substring(1);
-      const targetElement = document.getElementById(targetId);
-
-      if (targetElement) {
-        event.preventDefault();
-        targetElement.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
-
-  // ============================
-  // Карусель для галереї
-  // ============================
-  const carousel = document.getElementById('carousel');
-  const items = document.querySelectorAll('.carousel-item');
-  const galleryBtnPrev = document.getElementById('galleryBtn');
-  const galleryBtnNext = document.getElementById('galleryBtn2');
-
-  let currentIndexGallery = 0;
-
-  function getItemsPerView() {
-    return window.innerWidth <= 480 ? 1 : 3;
+/* Navbar */
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #191919;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+}
+.logo {
+  font-size: 28px;
+  font-weight: 900;
+  color: #D4AF37;
+  font-family: 'Bebas Neue', cursive;
+  user-select: none;
+  letter-spacing: 2px;
+  transition: color 0.3s ease;
+}
+.logo:hover {
+  color: #b08a2e;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+  align-items: center;
+}
+.nav-links li a {
+  color: #D4AF37;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: 6px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.nav-links li a:hover,
+.nav-links li a:focus {
+  background-color: #b08a2e;
+  color: #fff;
+  outline: none;
+}
+.bookNowBtnNavbar {
+  background: linear-gradient(135deg, #D4AF37, #b08a2e);
+  color: #191919;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.6);
+  transition: background 0.4s, box-shadow 0.4s;
+  user-select: none;
+}
+.bookNowBtnNavbar:hover,
+.bookNowBtnNavbar:focus {
+  background: linear-gradient(135deg, #b08a2e, #8a6a1e);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(176, 138, 46, 0.8);
+  outline: none;
+}
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
   }
+}
 
-  function showSlideGallery(index) {
-    const itemsPerView = getItemsPerView();
-    if (index < 0) index = items.length - itemsPerView;
-    if (index > items.length - itemsPerView) index = 0;
-
-    const shiftPercent = (100 / itemsPerView) * index;
-    carousel.style.transition = 'transform 0.3s ease-in-out';
-    carousel.style.transform = `translateX(-${shiftPercent}%)`;
-    currentIndexGallery = index;
+/* Hero section */
+.hero {
+  padding: 200px 20px 150px;
+  text-align: center;
+  background: url('images/main.jpg') no-repeat center top/cover;
+}
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+@media (max-width: 900px) {
+  .hero {
+    padding: 0 20px 40px;
+    height: 250px;
+    background-position: center center;
+    background-size: cover;
   }
-
-  galleryBtnPrev.addEventListener('click', () => {
-    showSlideGallery(currentIndexGallery - 1);
-  });
-
-  galleryBtnNext.addEventListener('click', () => {
-    showSlideGallery(currentIndexGallery + 1);
-  });
-
-  window.addEventListener('resize', () => {
-    // При зміні розміру скидаємо показ на перший слайд, щоб уникнути помилок
-    showSlideGallery(0);
-  });
-
-  // Автоматичне листання
-  setInterval(() => {
-    showSlideGallery(currentIndexGallery + 1);
-  }, 200000);
-
-  // Початковий показ
-  showSlideGallery(0);
-
-  // ============================
-  // Карусель для команди
-  // ============================
-  const btnPrevTeam = document.getElementById('teamBtn');
-  const btnNextTeam = document.getElementById('teamBtn2');
-  const teamTrack = document.querySelector('#team .team-track');
-  const teamMembers = document.querySelectorAll('#team .team-member');
-
-  if (btnPrevTeam && btnNextTeam && teamTrack && teamMembers.length > 0) {
-    let currentTeamIndex = 0;
-
-    function getVisibleTeamCount() {
-      return window.innerWidth <= 480 ? 1 : 3;
-    }
-
-    function updateTeamCarousel() {
-      const visibleTeamCount = getVisibleTeamCount();
-      // Обмежуємо currentTeamIndex, якщо потрібно
-      if (currentTeamIndex > teamMembers.length - visibleTeamCount) {
-        currentTeamIndex = teamMembers.length - visibleTeamCount;
-      }
-      if (currentTeamIndex < 0) {
-        currentTeamIndex = 0;
-      }
-      teamTrack.style.transform = `translateX(-${(currentTeamIndex * 100) / visibleTeamCount}%)`;
-    }
-
-    btnPrevTeam.addEventListener('click', () => {
-      currentTeamIndex -= 1;
-      if (currentTeamIndex < 0) {
-        currentTeamIndex = teamMembers.length - getVisibleTeamCount();
-      }
-      updateTeamCarousel();
-    });
-
-    btnNextTeam.addEventListener('click', () => {
-      currentTeamIndex += 1;
-      if (currentTeamIndex > teamMembers.length - getVisibleTeamCount()) {
-        currentTeamIndex = 0;
-      }
-      updateTeamCarousel();
-    });
-
-    updateTeamCarousel();
-
-    setInterval(() => {
-      currentTeamIndex += 1;
-      if (currentTeamIndex > teamMembers.length - getVisibleTeamCount()) {
-        currentTeamIndex = 0;
-      }
-      updateTeamCarousel();
-    }, 3000);
-
-    window.addEventListener('resize', () => {
-      updateTeamCarousel();
-    });
-  } else {
-    console.warn('Елементи каруселі команди не знайдені!');
+  .hero h1 {
+    font-size: 28px;
+    margin-top: -50px;
+    margin-bottom: 10px;
   }
-
-  // ============================
-  // Логіка форми відгуків
-  // ============================
-  const form = document.getElementById("reviewForm");
-  const ratingStars = document.querySelectorAll(".rating span");
-  const ratingInput = document.getElementById("reviewRating");
-
-  ratingStars.forEach(star => {
-    star.addEventListener("click", () => {
-      const rating = star.getAttribute("data-value");
-      ratingInput.value = rating;
-      ratingStars.forEach(s => s.classList.toggle("selected", s.getAttribute("data-value") <= rating));
-    });
-  });
-
-  const reviewsList = document.getElementById("reviewsList");
-  const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
-  savedReviews.forEach(addReviewToPage);
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById("reviewName").value.trim();
-    const text = document.getElementById("reviewText").value.trim();
-    const rating = parseInt(ratingInput.value);
-
-    if (name && text && rating > 0) {
-      const date = new Date();
-      const formattedDate = date.toLocaleDateString();
-      const formattedTime = date.toLocaleTimeString();
-      const review = { name, text, rating, date: formattedDate, time: formattedTime };
-      addReviewToPage(review);
-
-      savedReviews.push(review);
-      localStorage.setItem("reviews", JSON.stringify(savedReviews));
-
-      form.reset();
-      ratingInput.value = 0;
-      ratingStars.forEach(s => s.classList.remove("selected"));
-    }
-  });
-
-  function addReviewToPage({ name, text, rating, date, time }) {
-    const div = document.createElement("div");
-    div.classList.add("review");
-    const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-    div.innerHTML = `
-      <strong>${name} — ${stars}</strong>
-      <p>${text}</p>
-      <p class="date">${date} ${time}</p>
-    `;
-    reviewsList.prepend(div);
+  .hero p {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 20px;
   }
+}
 
-  // ============================
-  // FAQ toggle logic
-  // ============================
-  document.querySelectorAll(".faq-question").forEach(question => {
-    question.addEventListener("click", () => {
-      const answer = question.nextElementSibling;
-      answer.classList.toggle("show");
-    });
-  });
+/* Buttons */
+.btn {
+  background-color: #D4AF37;
+  color: #121212;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.btn:hover {
+  background-color: #b08a2e;
+}
 
-  // ============================
-  // Smooth scroll для FAQ кнопки і всіх якорів
-  // ============================
-  // Якщо є кнопка з класом faq-button, то можна раскоментувати і використовувати:
-  /*
-  const faqButton = document.querySelector('.faq-button');
-  if (faqButton) {
-    faqButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      const faqHeader = document.getElementById('faq-header');
-      window.scrollTo({
-        top: faqHeader.offsetTop - 20,
-        behavior: 'smooth'
-      });
-    });
+/* Section wrapper */
+.section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #121212;
+  scroll-margin-top: 100px;
+}
+.section h2 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 36px;
+  color: #f2c94c;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+/* Modern text */
+.modern-text {
+  font-size: 17px;
+  color: #dddddd;
+  line-height: 1.7;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Team carousel */
+#team .team-carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+#team .team-carousel {
+  display: flex;
+}
+#team .team-track {
+  display: flex;
+  flex-direction: row;
+  transition: transform 0.5s;
+  will-change: transform;
+}
+#team .team-member {
+  width: 33.33%;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+#team .team-member img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  display: block;
+}
+#team .team-member h3 {
+  margin-top: 15px;
+  font-size: 1.5rem;
+}
+#team .team-member p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+#team .carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 10;
+}
+#team .carousel-controls button {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  pointer-events: auto;
+  user-select: none;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+#team .carousel-controls button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.modern-text .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* About section */
+#about {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  padding: 60px 20px;
+}
+#about .container {
+  width: 100%;
+  max-width: none;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+#about h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+#about p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  max-width: none;
+}
+@media (max-width: 768px) {
+  #about p {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 12px;
   }
-  */
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    });
-  });
-
-  document.querySelectorAll('a[href="#faq"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const faqHeader = document.getElementById('faq-header');
-      if (faqHeader) {
-        window.scrollTo({
-          top: faqHeader.offsetTop - 10,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
-  // ============================
-  // Логіка оновлення цін на послуги
-  // ============================
-  const prices = {
-    haircut: 430,
-    clipperCut: 380,
-    scissorCut: 590,
-    hairStyling: 330,
-    headShave: 480,
-    greyHairToning: 480,
-    beardTrim: 380,
-    beardShave: 430,
-    fatherSon: 550,
-    haircutBeardTrim: 790,
-    clipperCutBeardTrim: 590,
-    hairlineOutline: 280
-  };
-
-  const serviceSelect = document.getElementById('service');
-  const priceDisplay = document.getElementById('price-value');
-
-  function updatePrice() {
-    const selectedService = serviceSelect.value;
-    const price = prices[selectedService];
-    priceDisplay.textContent = price ? `${price} USD` : '-';
+  #about h2 {
+    font-size: 22px;
+    margin-bottom: 16px;
   }
+}
 
-  serviceSelect.addEventListener('change', updatePrice);
+/* History section styles */
+#history {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  background-color: #1f1f1f; 
+  padding: 40px 20px;
+}
 
-  updatePrice();
-});
+/* Headings for about and history */
+#about h2, #history h2 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 36px;
+  color: #f2c94c;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
+/* Paragraphs for about and history */
+#about p, #history p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #E0E0E0;
+}
 
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-  });
+/* Consistent button style for about and history */
+#about .btn, #history .btn {
+  background-color: #D4AF37;
+  color: #121212;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-  // Закрити меню при кліку на пункт
-  document.querySelectorAll('.nav-links li a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navLinks.classList.remove('active');
-    });
-  });
-});
+#about .btn:hover, #history .btn:hover {
+  background-color: #b08a2e;
+}
+
+/* Responsive section styles */
+@media (max-width: 768px) {
+  .section h2 {
+    font-size: 28px;
+  }
+  .section p {
+    font-size: 1rem;
+  }
+}
+
+/* Dropdown menu */
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1F1F1F;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  min-width: 150px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  z-index: 1001;
+}
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: #E0E0E0;
+}
+.dropdown-menu li a:hover {
+  background-color: #333333;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Contact button */
+.contact-btn {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s , color 0.3s;
+}
+.contact-btn:hover {
+  background-color: #b08a2e;
+  color: white; 
+}
+
+/* Prices section */
+.prices-container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.price-column {
+  background-color: #1f1f1f;
+  border: 2px solid orange;
+  padding: 30px 40px;
+  flex: 1 1 300px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.price-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.price-column li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid gray;
+  font-size: 22px;
+  color: white;
+}
+.price-column li span:first-child {
+  flex: 1;
+  text-align: left;
+}
+.price-column li span:last-child {
+  min-width: 120px;
+  text-align: right;
+  color: orange;
+  font-weight: bold;
+  margin-left: 30px;
+}
+.price-column li:last-child {
+  border-bottom: none;
+}
+
+/* Gallery section */
+#gallery {
+  padding: 60px 20px;
+  background-color: #121212;
+  text-align: center;
+}
+#gallery h2 {
+  color: #f2c94c;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+.gallery-container {
+  overflow: hidden;
+  max-width: 100%;
+  position: relative;
+}
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 0;
+}
+.carousel-item {
+  flex: 0 0 100%;
+  padding-bottom: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+.carousel-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.carousel-controls button {
+  pointer-events: all;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+.carousel-controls button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+@media (max-width: 480px) {
+  .carousel {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 0 !important;
+    flex-direction: row !important;
+  }
+  .carousel-item {
+    flex: 0 0 100% !important;
+    padding-bottom: 100% !important;
+    scroll-snap-align: start !important;
+    border-radius: 12px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
+  .carousel-item img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    display: block !important;
+  }
+}
+
+/* Modal popup */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+.modal-content {
+  background-color: #1F1F1F;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #D4AF37;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.close-btn:hover {
+  color: #e74c3c;
+}
+
+/* Contact form */
+.form-container {
+  background-color: #1F1F1F;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+.form-container h3 {
+  color: #f2c94c;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #121212;
+  color: #E0E0E0;
+  font-size: 16px;
+}
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+  color: #888;
+}
+.form-container button {
+  background-color: #D4AF37;
+  color: #121212;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.form-container button:hover {
+  background-color: #b08a2e;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  font-family: 'Poppins', sans-serif;
+  color: #E0E0E0;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+input, select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #333;
+  color: #E0E0E0;
+  transition: border 0.3s ease;
+}
+input:focus, select:focus {
+  border-color: #D4AF37;
+}
+button[type="submit"] {
+  background-color: #D4AF37;
+  color: #121212;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+button[type="submit"]:hover {
+  background-color: #b08a2e;
+}
+button[type="submit"]:active {
+  background-color: #1c4f7d;
+}
+
+/* Service menu animation */
+.service-menu {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.service-menu.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar .nav-links {
+    display: none;
+  }
+  .navbar.active .nav-links {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #1F1F1F;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+  }
+  .navbar .nav-links li {
+    margin: 10px 0;
+  }
+  .hero h1 {
+    font-size: 36px;
+  }
+  .hero p {
+    font-size: 20px;
+  }
+  #team .team-member {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .price-column {
+    flex: 1 1 100%;
+  }
+  .carousel {
+    flex-direction: row;
+  }
+  .carousel-item {
+    width: 100%;
+    padding-bottom: 100%;
+  }
+}
+
+/* Review form and reviews */
+.review-form {
+  margin: 0 auto 30px auto;
+  width: 60%; 
+  text-align: left;
+  background: #1a1507;
+  padding: 20px;
+  border-radius: 15px;
+  box-sizing: border-box;
+}
+.reviews-container {
+  margin: 0 auto; 
+  width: 60%;
+  max-width: 900px;
+}
+.review {
+  background: #3b3010;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-left: 4px solid #d4af37;
+  text-align: left; 
+  border-radius: 8px;
+  color: #fff;
+  box-sizing: border-box;
+}
+.review strong {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Rating stars */
+.rating {
+  display: flex;
+  justify-content: center; 
+  margin-bottom: 15px;
+}
+.rating span {
+  font-size: 28px;
+  cursor: pointer;
+  color: gray;
+  transition: color 0.2s ease;
+  user-select: none;
+  margin: 0 3px;
+}
+.rating span.selected {
+  color: gold;
+}
+.stars {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Review date */
+.review .date {
+  font-size: 12px;
+  color: #ccc;
+  margin-top: 10px;
+}
+
+/* Header alignment */
+#reviews h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Utility class */
+.text-center {
+  text-align: center;
+}
+
+/* Responsive for mobile */
+@media (max-width: 996px) {
+  .review-form,
+  .reviews-container {
+    width: 90%;
+    padding: 10px;
+  }
+  .rating span {
+    font-size: 24px;
+  }
+  .review strong {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 400px) {
+  .rating {
+    justify-content: center;
+  }
+  .rating span {
+    font-size: 22px;
+    margin: 0 2px;
+  }
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contact section */
+#contact {
+  padding: 40px 20px;
+  background-color: #121212;
+}
+.contact-header h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #D4AF37;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.contact-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.contact-info {
+  flex: 1;
+  background-color: #121212;
+  padding: 30px;
+  border-radius: 19px;
+  border: 2px solid #D4AF37;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #fff;
+  max-width: 650px;
+  height: 450px;
+  font-family: 'Arial', sans-serif;
+}
+@media (max-width: 996px) {
+  .contact-info {
+    height: auto;
+    max-width: calc(100% - 4px);
+    margin: 0 auto;
+    padding: 15px 20px;
+    font-size: 1rem;
+    line-height: 1.4;
+    border-radius: 15px;
+  }
+}
+.contact-info p {
+  margin: 15px 0;
+  color: #bbb;
+}
+.contact-info strong {
+  font-weight: bold;
+  color: #D4AF37;
+}
+.contact-info a.contact-link {
+  color: #D4AF37;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #121212;
+  border-radius: 5px;
+  border: 2px solid #D4AF37;
+}
+.contact-info a.contact-link:hover {
+  background-color: #D4AF37;
+  color: #fff;
+}
+.contact-info a.social-icon {
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+.contact-info a.social-icon img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+.contact-info a.social-icon:hover img {
+  transform: scale(1.3);
+}
+@media (max-width: 996px) {
+  .contact-info > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .contact-info > p a.contact-link {
+    border: 1px solid #c8b461;
+    padding: 8px 14px;
+    border-radius: 8px;
+    display: inline-block;
+    text-decoration: none;
+    color: #c8b461;
+    line-height: 1;
+  }
+  .contact-info p:last-child {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+  .contact-info p:last-child .social-icon img {
+    width: 40px;
+    height: 40px;
+  }
+}
+@media (max-width: 400px) {
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .social-icons .social-icon img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Map styles */
+.contact-map iframe {
+  width: 100%;
+  height: 450px;
+  width: 720px;
+  border-radius: 8px;
+  border: 0;
+}
+@media (max-width: 996px) {
+  .contact-map {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    border-radius: 15px !important;
+    overflow: hidden;
+  }
+  .contact-map iframe {
+    width: 100% !important;
+    height: 250px;
+    border-radius: 15px !important;
+    display: block;
+  }
+}
+
+/* Review date */
+.review .date {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 10px;
+  text-align: left;
+}
+
+/* Service price */
+#service-price {
+  margin-top: 15px;
+  font-size: 1.5rem;
+  color: #f2c94c;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+#service-price strong {
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+/* Review form animation */
+.review-form {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.aos-animate .review-form {
+  opacity: 1;
+}
+
+/* Scroll padding for anchor navigation */
+html {
+  scroll-padding-top: 120px;
+}
+
+/* Prevent horizontal scroll in service section */
+#service {
+  overflow-x: hidden;
+}
+
+/* FAQ Section */
+.faq-section {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  background-color: #1f1f1f;
+}
+.faq-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.faq {
+  padding: 1px 0;
+  margin: 0;
+}
+.faq-question {
+  font-size: 1.3em;
+  font-weight: bold;
+  cursor: pointer;
+  color: #111;
+  transition: color 0.3s, background-color 0.3s, transform 0.2s;
+  text-align: left;
+  margin: 0;
+  padding: 10px;
+  background-color: #D4AF37;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: auto;
+  margin: 10px auto;
+  display: block;
+}
+.faq-question:hover {
+  color: #4e3c03;
+  background-color: #f8e0a6;
+  transform: scale(1.05);
+}
+.faq-answer {
+  display: none;
+  padding-top: 15px;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+  max-width: 1000px;
+  width: auto;
+  margin: 10px auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  font-size: 1.2em;
+  line-height: 1.5;
+  background-color: #D4AF37;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+.faq-answer.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+.faq + .faq {
+  margin-top: 0;
+}
+.faq-answer + .faq-question {
+  margin-top: 10px;
+}
+
+/* General layout and scroll fixes */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Hero section width and padding override */
+.hero {
+  width: 100%;
+  padding: 200px 0 150px;
+}
+
+/* Hamburger icon */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  width: 25px;
+  height: 20px;
+  justify-content: center;
+}
+.hamburger span {
+  height: 3px;
+  background: #D4AF37;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+/* Show hamburger on mobile */
+@media (max-width: 900px) {
+  .hamburger {
+    display: flex;
+  }
+}
+.nav-links.active {
+  display: block;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 35px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1000;
+}
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+}
+.hamburger span {
+  display: block;
+  height: 4px;
+  background: linear-gradient(45deg, #D4AF37, #b08a2e);
+  border-radius: 3px;
+  transition: all 0.4s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+  background: #b08a2e;
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(25px);
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+  background: #b08a2e;
+}
+@media (max-width: 480px) {
+  #team .team-member {
+    width: 80%;
+    padding: 8px 10px;
+    margin: 0 auto;
+  }
+  #team .team-member img {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+  }
+  #team .team-member h3 {
+    font-size: 1.1rem;
+    margin-top: 8px;
+  }
+  #team .team-member p {
+    font-size: 0.85rem;
+    margin-top: 6px;
+    color: #777;
+  }
+  #team .carousel-controls button {
+    font-size: 20px;
+    padding: 12px;
+    width: 45px;
+    height: 45px;
+  }
+  #team .team-carousel {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+@media (min-width: 769px) {
+  .carousel-item {
+    flex: 0 0 33.3333% !important;
+    padding-bottom: 33.3333% !important;
+    position: relative !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .carousel-item img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    display: block !important;
+  }
+}
