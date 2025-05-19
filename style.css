@@ -423,22 +423,40 @@ a:hover {
   position: relative;
 }
 
-/* Carousel styles */
+/* Gallery carousel container */
+.gallery-container {
+  overflow: hidden;
+  max-width: 100%;
+  position: relative;
+}
+
+/* Контейнер галереї */
+.gallery-container {
+  overflow: hidden;
+  max-width: 100%;
+  position: relative;
+}
+
+/* Карусель */
 .carousel {
   display: flex;
-  gap: 3px; 
+  gap: 3px;
   transition: transform 0.5s ease-in-out;
   width: 100%;
   max-width: 100%;
 }
 
+/* Окремий слайд */
 .carousel-item {
-  flex: 0 0 calc(33.33% - 3px); 
-  padding-bottom: calc(33.33% - 3px); 
+  flex: 0 0 calc(33.33% - 3px); /* 3 картинки в ряд */
+  padding-bottom: calc(33.33% - 3px); /* квадрат */
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
+  box-sizing: border-box;
 }
 
+/* Зображення всередині слайда */
 .carousel-item img {
   position: absolute;
   top: 0;
@@ -446,9 +464,11 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 12px;
+  display: block;
 }
 
-/* Carousel navigation controls */
+/* Кнопки навігації */
 .carousel-controls {
   position: absolute;
   top: 50%;
@@ -456,9 +476,11 @@ a:hover {
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .carousel-controls button {
+  pointer-events: all;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
@@ -471,10 +493,34 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
 .carousel-controls button:hover {
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Планшети — 2 картинки в ряд */
+@media (max-width: 768px) {
+  .carousel-item {
+    flex: 0 0 calc(50% - 3px);
+    padding-bottom: calc(50% - 3px);
+  }
+}
+
+/* Мобільні — 1 картинка */
+@media (max-width: 480px) {
+  .carousel-item {
+    flex: 0 0 100%;
+    padding-bottom: 100%;
+  }
+  
+  .carousel-controls button {
+    width: 48px;
+    height: 48px;
+    font-size: 2.4rem;
+    padding: 12px;
+  }
 }
 
 /* Modal styles for popups */
@@ -701,43 +747,54 @@ button[type="submit"]:active {
 
 /* Review form and reviews container */
 .review-form {
-  margin: 0 auto;
+  margin: 0 auto 30px auto;
   width: 60%; 
   text-align: left;
+  background: #1a1507;
+  padding: 20px;
+  border-radius: 15px;
+  box-sizing: border-box;
 }
 
 .reviews-container {
   margin: 0 auto; 
   width: 60%;
+  max-width: 900px;
 }
 
 /* Individual review styles */
 .review {
   background: #3b3010;
-  padding: 15px;
+  padding: 15px 20px;
   margin-bottom: 15px;
-  border-left: 4px solid #1f1905;
+  border-left: 4px solid #d4af37;
   text-align: left; 
+  border-radius: 8px;
+  color: #fff;
+  box-sizing: border-box;
 }
 
 .review strong {
   display: block;
-  margin-top: 10px;
+  margin-bottom: 5px;
   font-weight: 700;
+  font-size: 1.1rem;
 }
 
 /* Rating stars */
 .rating {
   display: flex;
   justify-content: center; 
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .rating span {
-  font-size: 24px;
+  font-size: 28px;
   cursor: pointer;
   color: gray;
   transition: color 0.2s ease;
+  user-select: none;
+  margin: 0 3px;
 }
 
 .rating span.selected {
@@ -752,17 +809,47 @@ button[type="submit"]:active {
 /* Review date */
 .review .date {
   font-size: 12px;
-  color: #888;
+  color: #ccc;
   margin-top: 10px;
 }
 
+/* Header alignment */
 #reviews h2 {
   text-align: center;
+  margin-bottom: 25px;
 }
 
 /* Utility class for center text */
 .text-center {
   text-align: center;
+}
+
+/* Адаптивність для мобільних */
+@media (max-width: 996px) {
+  .review-form,
+  .reviews-container {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .rating span {
+    font-size: 24px;
+  }
+
+  .review strong {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .rating {
+    justify-content: center;
+  }
+
+  .rating span {
+    font-size: 22px;
+    margin: 0 2px;
+  }
 }
 
 /* Reset box-sizing and margin/padding for all elements */
@@ -804,6 +891,8 @@ body {
   flex-wrap: wrap;
 }
 
+
+
 /* Contact info box */
 .contact-info {
   flex: 1;
@@ -818,6 +907,17 @@ body {
   max-width: 650px;
   height: 450px;
   font-family: 'Arial', sans-serif;
+}
+@media (max-width: 996px) {
+  .contact-info {
+    height: auto;             /* Висота по контенту */
+    max-width: calc(100% - 4px); /* Відступи по 15px зліва і справа */
+    margin: 0 auto;           /* Центруємо блок */
+    padding: 15px 20px;       /* Відступи всередині */
+    font-size: 1rem;          /* Трішки менший шрифт */
+    line-height: 1.4;         /* Комфортний міжрядковий інтервал */
+    border-radius: 15px;      /* Заокруглені кути */
+  }
 }
 
 .contact-info p {
@@ -853,7 +953,7 @@ body {
   text-decoration: none;
   display: inline-block;
   margin-top: 10px;
-  margin-right: 15px;;
+  margin-right: 5px;
 }
 
 .contact-info a.social-icon img {
@@ -864,6 +964,59 @@ body {
 
 .contact-info a.social-icon:hover img {
   transform: scale(1.3);
+
+}
+
+
+@media (max-width: 996px) {
+  /* Вирівнюємо текст і посилання у рядку по центру вертикалі */
+  .contact-info > p {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* важливо для вертикального центрування */
+    gap: 15px;
+    flex-wrap: wrap;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  /* Стилі для посилань (кнопок) */
+  .contact-info > p a.contact-link {
+    border: 1px solid #c8b461;
+    padding: 8px 14px;
+    border-radius: 8px;
+    display: inline-block;
+    text-decoration: none;
+    color: #c8b461;
+    line-height: 1; /* зменшує висоту рядка, прибирає зайвий простір */
+  }
+
+  /* Зменшуємо відстань між іконками соцмереж */
+  .contact-info p:last-child {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 5px; /* зменшено відстань */
+  }
+
+  .contact-info p:last-child .social-icon img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .social-icons .social-icon img {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 /* Map iframe styles */
@@ -875,23 +1028,24 @@ body {
   border: 0;
 }
 
-/* Responsive contact section */
-@media (max-width: 768px) {
-  .contact-content {
-  flex-direction: column;
-  align-items: center;
-  }
-
-  .contact-info {
-  width: 100%;
-  margin-bottom: 20px;
+@media (max-width: 996px) {
+  .contact-map {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    border-radius: 15px !important; /* заокруглені краї */
+    overflow: hidden; /* щоб заокруглення працювало на iframe */
   }
 
   .contact-map iframe {
-  width: 100%;
-  height: 200px;
+    width: 100% !important;
+    height: 250px; /* або твоя висота */
+    border-radius: 15px !important; /* заокруглення iframe */
+    display: block; /* прибирає зайві пробіли */
   }
 }
+
 
 /* Review date style override */
 .review .date {
@@ -983,7 +1137,7 @@ html {
 .faq-answer {
   display: none;
   padding-top: 15px;
-  color: #D4AF37;
+  color: #000000;
   text-align: center;
   margin: 0;
   max-width: 1000px;
