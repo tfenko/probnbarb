@@ -1,30 +1,29 @@
-/* Base styles for body and typography */
+/* Base body and typography */
 body {
-  background-color: #121212; /* Dark background */
-  color: #E0E0E0; /* Light text */
+  background-color: #121212;
+  color: #E0E0E0;
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
 
-/* Headings styling */
+/* Headings */
 h1, h2 {
-  color: #D4AF37; /* Gold color */
+  color: #D4AF37;
   font-family: 'Bebas Neue', cursive;
 }
 
-/* Link styles */
+/* Links */
 a {
   color: #D4AF37;
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
 
-/* Navbar styles */
+/* Navbar */
 .navbar {
   position: fixed;
   width: 100%;
@@ -33,14 +32,12 @@ a:hover {
   background-color: #191919;
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   padding: 15px 40px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
   z-index: 1000;
   font-family: 'Poppins', sans-serif;
 }
-
-/* Logo in navbar */
 .logo {
   font-size: 28px;
   font-weight: 900;
@@ -50,12 +47,9 @@ a:hover {
   letter-spacing: 2px;
   transition: color 0.3s ease;
 }
-
 .logo:hover {
   color: #b08a2e;
 }
-
-/* Navigation links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -63,26 +57,20 @@ a:hover {
   margin-left: auto;
   align-items: center;
 }
-
-/* Навігаційні посилання */
 .nav-links li a {
-  text-decoration: none;
   color: #D4AF37;
   font-size: 15px;
   font-weight: 600;
   padding: 8px 15px;
   border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s, color 0.3s;
 }
-
 .nav-links li a:hover,
 .nav-links li a:focus {
   background-color: #b08a2e;
   color: #fff;
   outline: none;
 }
-
-/* Contact button in navbar */
 .bookNowBtnNavbar {
   background: linear-gradient(135deg, #D4AF37, #b08a2e);
   color: #191919;
@@ -93,10 +81,9 @@ a:hover {
   cursor: pointer;
   border: none;
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.6);
-  transition: background 0.4s ease, box-shadow 0.4s ease;
+  transition: background 0.4s, box-shadow 0.4s;
   user-select: none;
 }
-
 .bookNowBtnNavbar:hover,
 .bookNowBtnNavbar:focus {
   background: linear-gradient(135deg, #b08a2e, #8a6a1e);
@@ -104,45 +91,38 @@ a:hover {
   box-shadow: 0 6px 18px rgba(176, 138, 46, 0.8);
   outline: none;
 }
-
-/* Адаптивність для мобільних */
 @media (max-width: 768px) {
   .nav-links {
-    display: none; /* ховаємо навігацію, буде гамбургер */
+    display: none;
   }
 }
 
-/* Hero Section styles */
+/* Hero section */
 .hero {
   padding: 200px 20px 150px;
   text-align: center;
-  background: url('images/main.JPG') no-repeat center top/cover;
+  background: url('images/main.jpg') no-repeat center top/cover;
 }
-
 .hero h1 {
   font-size: 48px;
   margin-bottom: 20px;
 }
-
 .hero p {
   font-size: 24px;
   margin-bottom: 30px;
 }
-
 @media (max-width: 900px) {
   .hero {
-    padding: 0 20px 40px; /* прибираємо верхній падінг */
+    padding: 0 20px 40px;
     height: 250px;
     background-position: center center;
     background-size: cover;
   }
-
   .hero h1 {
     font-size: 28px;
-    margin-top: -50px;  /* піднімаємо текст вище */
+    margin-top: -50px;
     margin-bottom: 10px;
   }
-
   .hero p {
     font-size: 16px;
     margin-top: 0;
@@ -150,7 +130,7 @@ a:hover {
   }
 }
 
-/* General button styles */
+/* Buttons */
 .btn {
   background-color: #D4AF37;
   color: #121212;
@@ -161,7 +141,6 @@ a:hover {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .btn:hover {
   background-color: #b08a2e;
 }
@@ -173,8 +152,6 @@ a:hover {
   background-color: #121212;
   scroll-margin-top: 100px;
 }
-
-/* Section headings */
 .section h2 {
   font-family: 'Bebas Neue', cursive;
   font-size: 36px;
@@ -183,7 +160,7 @@ a:hover {
   margin-bottom: 30px;
 }
 
-/* Modern text style for sections */
+/* Modern text */
 .modern-text {
   font-size: 17px;
   color: #dddddd;
@@ -193,52 +170,43 @@ a:hover {
   text-align: center;
 }
 
-/* Team Section Carousel */
+/* Team carousel */
 #team .team-carousel-wrapper {
   overflow: hidden;
   position: relative;
   width: 100%;
 }
-
 #team .team-carousel {
   display: flex;
-  /* видаляємо transition звідси */
 }
-
 #team .team-track {
   display: flex;
   flex-direction: row;
-  transition: transform 0.5s ease-in-out; /* Плавна анімація трансформації */
-  will-change: transform; /* Оптимізація рендерингу */
+  transition: transform 0.5s;
+  will-change: transform;
 }
-
 #team .team-member {
   width: 33.33%;
   flex-shrink: 0;
   text-align: center;
   padding: 20px;
-  box-sizing: border-box; /* Щоб padding не впливав на ширину */
+  box-sizing: border-box;
 }
-
 #team .team-member img {
   width: 100%;
   height: auto;
   border-radius: 50%;
-  display: block; /* прибираємо можливі пробіли */
+  display: block;
 }
-
 #team .team-member h3 {
   margin-top: 15px;
   font-size: 1.5rem;
 }
-
 #team .team-member p {
   margin-top: 10px;
   font-size: 1rem;
   color: #555;
 }
-
-/* Carousel controls for team section */
 #team .carousel-controls {
   position: absolute;
   top: 50%;
@@ -247,10 +215,9 @@ a:hover {
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
-  pointer-events: none; /* Щоб кнопки не заважали іншим елементам */
+  pointer-events: none;
   z-index: 10;
 }
-
 #team .carousel-controls button {
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
@@ -258,16 +225,16 @@ a:hover {
   padding: 10px;
   cursor: pointer;
   font-size: 18px;
-  pointer-events: auto; /* Кнопки активні */
-  user-select: none; /* Відміна виділення тексту */
+  pointer-events: auto;
+  user-select: none;
   border-radius: 4px;
-  transition: background 0.3s ease;
+  transition: background 0.3s;
 }
-
 #team .carousel-controls button:hover {
   background: rgba(0, 0, 0, 0.8);
 }
-/* Container for content centering */
+
+/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -278,39 +245,34 @@ a:hover {
   margin: 0 auto;
 }
 
-/* About section styles */
+/* About section */
 #about {
   font-size: 1.1rem;
   line-height: 1.8;
   padding: 60px 20px;
 }
-
 #about .container {
   width: 100%;
   max-width: none;
   padding: 0 40px;
   margin: 0 auto;
 }
-
 #about h2 {
   font-size: 2rem;
   margin-bottom: 20px;
   text-align: center;
 }
-
 #about p {
   font-size: 1.1rem;
   margin: 10px 0;
-  max-width: none; 
+  max-width: none;
 }
-
 @media (max-width: 768px) {
   #about p {
     font-size: 14px;
     line-height: 1.4;
     margin-bottom: 12px;
   }
-
   #about h2 {
     font-size: 22px;
     margin-bottom: 16px;
@@ -357,22 +319,20 @@ a:hover {
   background-color: #b08a2e;
 }
 
-/* Responsive section styles for mobile */
+/* Responsive section styles */
 @media (max-width: 768px) {
   .section h2 {
     font-size: 28px;
   }
-
   .section p {
     font-size: 1rem;
   }
 }
 
-/* Dropdown menu styles */
+/* Dropdown menu */
 .dropdown {
   position: relative;
 }
-
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -387,22 +347,19 @@ a:hover {
   border-radius: 8px;
   z-index: 1001;
 }
-
 .dropdown-menu li a {
   display: block;
   padding: 10px 20px;
   color: #E0E0E0;
 }
-
 .dropdown-menu li a:hover {
   background-color: #333333;
 }
-
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 
-/* Contact Button override */
+/* Contact button */
 .contact-btn {
   background-color: #333;
   color: white;
@@ -412,13 +369,12 @@ a:hover {
   font-size: 16px;
   transition: background-color 0.3s , color 0.3s;
 }
-
 .contact-btn:hover {
   background-color: #b08a2e;
   color: white; 
 }
 
-/* Prices Section styles */
+/* Prices section */
 .prices-container {
   display: flex;
   gap: 30px;
@@ -427,8 +383,6 @@ a:hover {
   flex-wrap: wrap;
   overflow: hidden;
 }
-
-/* Individual price column */
 .price-column {
   background-color: #1f1f1f;
   border: 2px solid orange;
@@ -437,13 +391,11 @@ a:hover {
   max-width: 100%;
   box-sizing: border-box;
 }
-
 .price-column ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .price-column li {
   display: flex;
   justify-content: space-between;
@@ -453,12 +405,10 @@ a:hover {
   font-size: 22px;
   color: white;
 }
-
 .price-column li span:first-child {
   flex: 1;
   text-align: left;
 }
-
 .price-column li span:last-child {
   min-width: 120px;
   text-align: right;
@@ -466,52 +416,42 @@ a:hover {
   font-weight: bold;
   margin-left: 30px;
 }
-
 .price-column li:last-child {
   border-bottom: none;
 }
 
-/* Gallery section styles */
+/* Gallery section */
 #gallery {
   padding: 60px 20px;
   background-color: #121212;
   text-align: center;
 }
-
 #gallery h2 {
   color: #f2c94c;
   font-family: 'Bebas Neue', cursive;
   font-size: 36px;
   margin-bottom: 30px;
 }
-
-/* Контейнер галереї */
 .gallery-container {
   overflow: hidden;
   max-width: 100%;
   position: relative;
 }
-
-/* Карусель */
 .carousel {
   display: flex;
-  flex-wrap: nowrap; /* Ensure all items are in one row */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  scroll-snap-type: x mandatory; /* Snap to items */
-  gap: 0; /* Remove gaps between items */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 0;
 }
-
-/* Окремий слайд */
 .carousel-item {
-  flex: 0 0 100%; /* 1 картинка в ряд */
-  padding-bottom: 100%; /* квадратна пропорція */
+  flex: 0 0 100%;
+  padding-bottom: 100%;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   box-sizing: border-box;
 }
-
-/* Зображення всередині слайда */
 .carousel-item img {
   position: absolute;
   top: 0;
@@ -522,8 +462,6 @@ a:hover {
   border-radius: 12px;
   display: block;
 }
-
-/* Кнопки навігації */
 .carousel-controls {
   position: absolute;
   top: 50%;
@@ -532,10 +470,9 @@ a:hover {
   justify-content: space-between;
   transform: translateY(-50%);
   pointer-events: none;
-  padding: 0 10px; /* щоб кнопки не прилипали до країв */
+  padding: 0 10px;
   box-sizing: border-box;
 }
-
 .carousel-controls button {
   pointer-events: all;
   background-color: rgba(0, 0, 0, 0.5);
@@ -553,11 +490,9 @@ a:hover {
   transition: background-color 0.3s ease;
   user-select: none;
 }
-
 .carousel-controls button:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
-
 @media (max-width: 480px) {
   .carousel {
     display: flex !important;
@@ -565,9 +500,8 @@ a:hover {
     overflow-x: hidden !important;
     scroll-snap-type: x mandatory !important;
     gap: 0 !important;
-    flex-direction: row !important; /* явно встановлюємо горизонтальний ряд */
+    flex-direction: row !important;
   }
-
   .carousel-item {
     flex: 0 0 100% !important;
     padding-bottom: 100% !important;
@@ -578,7 +512,6 @@ a:hover {
     box-sizing: border-box !important;
     width: 100% !important;
   }
-
   .carousel-item img {
     position: absolute !important;
     top: 0 !important;
@@ -590,7 +523,8 @@ a:hover {
     display: block !important;
   }
 }
-/* Modal styles for popups */
+
+/* Modal popup */
 .modal {
   display: none;
   position: fixed;
@@ -604,12 +538,10 @@ a:hover {
   z-index: 1000;
   transition: opacity 0.3s ease;
 }
-
 .modal.show {
   display: flex;
   opacity: 1;
 }
-
 .modal-content {
   background-color: #1F1F1F;
   border-radius: 10px;
@@ -620,20 +552,16 @@ a:hover {
   position: relative;
   animation: fadeIn 0.3s ease;
 }
-
-/* Modal fade-in animation */
 @keyframes fadeIn {
   from {
-  transform: translateY(-50px);
-  opacity: 0;
+    transform: translateY(-50px);
+    opacity: 0;
   }
   to {
-  transform: translateY(0);
-  opacity: 1;
+    transform: translateY(0);
+    opacity: 1;
   }
 }
-
-/* Close button for modal */
 .close-btn {
   position: absolute;
   top: 10px;
@@ -644,12 +572,11 @@ a:hover {
   background: none;
   border: none;
 }
-
 .close-btn:hover {
   color: #e74c3c;
 }
 
-/* Contact Form container */
+/* Contact form */
 .form-container {
   background-color: #1F1F1F;
   padding: 30px;
@@ -658,14 +585,11 @@ a:hover {
   margin: 0 auto;
   text-align: center;
 }
-
 .form-container h3 {
   color: #f2c94c;
   margin-bottom: 20px;
   font-size: 24px;
 }
-
-/* Input and textarea styles */
 .form-container input,
 .form-container textarea {
   width: 100%;
@@ -677,13 +601,10 @@ a:hover {
   color: #E0E0E0;
   font-size: 16px;
 }
-
 .form-container input::placeholder,
 .form-container textarea::placeholder {
   color: #888;
 }
-
-/* Button in form */
 .form-container button {
   background-color: #D4AF37;
   color: #121212;
@@ -694,31 +615,25 @@ a:hover {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .form-container button:hover {
   background-color: #b08a2e;
 }
-
-/* Extra form styling */
 form {
   display: flex;
   flex-direction: column;
   gap: 15px;
   padding: 10px;
 }
-
 .form-group {
   display: flex;
   flex-direction: column;
 }
-
 label {
   font-family: 'Poppins', sans-serif;
   color: #E0E0E0;
   font-weight: 600;
   margin-bottom: 5px;
 }
-
 input, select {
   padding: 10px;
   font-size: 16px;
@@ -728,11 +643,9 @@ input, select {
   color: #E0E0E0;
   transition: border 0.3s ease;
 }
-
 input:focus, select:focus {
   border-color: #D4AF37;
 }
-
 button[type="submit"] {
   background-color: #D4AF37;
   color: #121212;
@@ -743,11 +656,9 @@ button[type="submit"] {
   font-size: 16px;
   transition: background-color 0.3s ease;
 }
-
 button[type="submit"]:hover {
   background-color: #b08a2e;
 }
-
 button[type="submit"]:active {
   background-color: #1c4f7d;
 }
@@ -758,61 +669,52 @@ button[type="submit"]:active {
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
-
 .service-menu.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Responsive styles for navbar, hero, team, prices, and carousel */
+/* Responsive styles */
 @media (max-width: 768px) {
   .navbar .nav-links {
-  display: none;
+    display: none;
   }
-
   .navbar.active .nav-links {
-  display: block;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  background-color: #1F1F1F;
-  width: 100%;
-  padding: 20px 0;
-  text-align: center;
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #1F1F1F;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
   }
-
   .navbar .nav-links li {
-  margin: 10px 0;
+    margin: 10px 0;
   }
-
   .hero h1 {
-  font-size: 36px;
+    font-size: 36px;
   }
-
   .hero p {
-  font-size: 20px;
+    font-size: 20px;
   }
-
   #team .team-member {
-  width: 100%;
-  margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 20px;
   }
-
   .price-column {
-  flex: 1 1 100%;
+    flex: 1 1 100%;
   }
-
   .carousel {
-  flex-direction: row;
+    flex-direction: row;
   }
-
   .carousel-item {
-  width: 100%;
-  padding-bottom: 100%;
+    width: 100%;
+    padding-bottom: 100%;
   }
 }
 
-/* Review form and reviews container */
+/* Review form and reviews */
 .review-form {
   margin: 0 auto 30px auto;
   width: 60%; 
@@ -822,14 +724,11 @@ button[type="submit"]:active {
   border-radius: 15px;
   box-sizing: border-box;
 }
-
 .reviews-container {
   margin: 0 auto; 
   width: 60%;
   max-width: 900px;
 }
-
-/* Individual review styles */
 .review {
   background: #3b3010;
   padding: 15px 20px;
@@ -840,7 +739,6 @@ button[type="submit"]:active {
   color: #fff;
   box-sizing: border-box;
 }
-
 .review strong {
   display: block;
   margin-bottom: 5px;
@@ -854,7 +752,6 @@ button[type="submit"]:active {
   justify-content: center; 
   margin-bottom: 15px;
 }
-
 .rating span {
   font-size: 28px;
   cursor: pointer;
@@ -863,11 +760,9 @@ button[type="submit"]:active {
   user-select: none;
   margin: 0 3px;
 }
-
 .rating span.selected {
   color: gold;
 }
-
 .stars {
   display: flex;
   flex-direction: row;
@@ -886,70 +781,60 @@ button[type="submit"]:active {
   margin-bottom: 25px;
 }
 
-/* Utility class for center text */
+/* Utility class */
 .text-center {
   text-align: center;
 }
 
-/* Адаптивність для мобільних */
+/* Responsive for mobile */
 @media (max-width: 996px) {
   .review-form,
   .reviews-container {
     width: 90%;
     padding: 10px;
   }
-
   .rating span {
     font-size: 24px;
   }
-
   .review strong {
     font-size: 1rem;
   }
 }
-
 @media (max-width: 400px) {
   .rating {
     justify-content: center;
   }
-
   .rating span {
     font-size: 22px;
     margin: 0 2px;
   }
 }
 
-/* Reset box-sizing and margin/padding for all elements */
+/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-/* Body font and spacing reset */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-/* Contact section styles */
+/* Contact section */
 #contact {
   padding: 40px 20px;
-  background-color: #121212; 
+  background-color: #121212;
 }
-
-/* Contact section header */
 .contact-header h2 {
   text-align: center;
   font-size: 2.5rem;
-  color: #D4AF37; 
+  color: #D4AF37;
   margin-bottom: 30px;
   text-transform: uppercase;
   font-weight: 700;
 }
-
-/* Contact content layout */
 .contact-content {
   display: flex;
   justify-content: space-between;
@@ -957,10 +842,6 @@ body {
   align-items: flex-start;
   flex-wrap: wrap;
 }
-
-
-
-/* Contact info box */
 .contact-info {
   flex: 1;
   background-color: #121212;
@@ -977,27 +858,23 @@ body {
 }
 @media (max-width: 996px) {
   .contact-info {
-    height: auto;             /* Висота по контенту */
-    max-width: calc(100% - 4px); /* Відступи по 15px зліва і справа */
-    margin: 0 auto;           /* Центруємо блок */
-    padding: 15px 20px;       /* Відступи всередині */
-    font-size: 1rem;          /* Трішки менший шрифт */
-    line-height: 1.4;         /* Комфортний міжрядковий інтервал */
-    border-radius: 15px;      /* Заокруглені кути */
+    height: auto;
+    max-width: calc(100% - 4px);
+    margin: 0 auto;
+    padding: 15px 20px;
+    font-size: 1rem;
+    line-height: 1.4;
+    border-radius: 15px;
   }
 }
-
 .contact-info p {
   margin: 15px 0;
   color: #bbb;
 }
-
 .contact-info strong {
   font-weight: bold;
   color: #D4AF37;
 }
-
-/* Contact link button */
 .contact-info a.contact-link {
   color: #D4AF37;
   text-decoration: none;
@@ -1009,46 +886,35 @@ body {
   border-radius: 5px;
   border: 2px solid #D4AF37;
 }
-
 .contact-info a.contact-link:hover {
   background-color: #D4AF37;
   color: #fff;
 }
-
-/* Social icon styles */
 .contact-info a.social-icon {
   text-decoration: none;
   display: inline-block;
   margin-top: 10px;
   margin-right: 5px;
 }
-
 .contact-info a.social-icon img {
   width: 50px;
   height: 50px;
   transition: transform 0.3s ease;
 }
-
 .contact-info a.social-icon:hover img {
   transform: scale(1.3);
-
 }
-
-
 @media (max-width: 996px) {
-  /* Вирівнюємо текст і посилання у рядку по центру вертикалі */
   .contact-info > p {
     display: flex;
     justify-content: center;
-    align-items: center; /* важливо для вертикального центрування */
+    align-items: center;
     gap: 15px;
     flex-wrap: wrap;
     font-weight: 600;
     font-size: 16px;
     margin-bottom: 10px;
   }
-
-  /* Стилі для посилань (кнопок) */
   .contact-info > p a.contact-link {
     border: 1px solid #c8b461;
     padding: 8px 14px;
@@ -1056,23 +922,19 @@ body {
     display: inline-block;
     text-decoration: none;
     color: #c8b461;
-    line-height: 1; /* зменшує висоту рядка, прибирає зайвий простір */
+    line-height: 1;
   }
-
-  /* Зменшуємо відстань між іконками соцмереж */
   .contact-info p:last-child {
     margin-top: 15px;
     display: flex;
     justify-content: center;
-    gap: 5px; /* зменшено відстань */
+    gap: 5px;
   }
-
   .contact-info p:last-child .social-icon img {
     width: 40px;
     height: 40px;
   }
 }
-
 @media (max-width: 400px) {
   .social-icons {
     display: flex;
@@ -1086,7 +948,7 @@ body {
   }
 }
 
-/* Map iframe styles */
+/* Map styles */
 .contact-map iframe {
   width: 100%;
   height: 450px;
@@ -1094,27 +956,24 @@ body {
   border-radius: 8px;
   border: 0;
 }
-
 @media (max-width: 996px) {
   .contact-map {
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 !important;
     margin: 0 auto !important;
-    border-radius: 15px !important; /* заокруглені краї */
-    overflow: hidden; /* щоб заокруглення працювало на iframe */
+    border-radius: 15px !important;
+    overflow: hidden;
   }
-
   .contact-map iframe {
     width: 100% !important;
-    height: 250px; /* або твоя висота */
-    border-radius: 15px !important; /* заокруглення iframe */
-    display: block; /* прибирає зайві пробіли */
+    height: 250px;
+    border-radius: 15px !important;
+    display: block;
   }
 }
 
-
-/* Review date style override */
+/* Review date */
 .review .date {
   font-size: 0.9rem;
   color: #aaa;
@@ -1122,15 +981,14 @@ body {
   text-align: left;
 }
 
-/* Service price display */
+/* Service price */
 #service-price {
   margin-top: 15px;
   font-size: 1.5rem;
   color: #f2c94c;
-  font-family: 'Poppins', sans-serif; 
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
-
 #service-price strong {
   font-size: 1.3rem;
   color: #fff;
@@ -1155,27 +1013,22 @@ html {
   overflow-x: hidden;
 }
 
-/* FAQ Section styles */
+/* FAQ Section */
 .faq-section {
   width: 100%;
   padding: 20px;
   text-align: center;
   background-color: #1f1f1f;
 }
-
 .faq-section h2 {
   font-size: 2em;
   margin-bottom: 20px;
   text-align: center;
 }
-
-/* FAQ item wrapper */
 .faq {
   padding: 1px 0;
   margin: 0;
 }
-
-/* FAQ question styles */
 .faq-question {
   font-size: 1.3em;
   font-weight: bold;
@@ -1193,14 +1046,11 @@ html {
   margin: 10px auto;
   display: block;
 }
-
 .faq-question:hover {
   color: #4e3c03;
   background-color: #f8e0a6;
   transform: scale(1.05);
 }
-
-/* FAQ answer styles */
 .faq-answer {
   display: none;
   padding-top: 15px;
@@ -1220,19 +1070,14 @@ html {
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
-
-/* Show FAQ answer when active */
 .faq-answer.show {
   display: block;
   opacity: 1;
   transform: translateY(0);
 }
-
-/* FAQ spacing */
 .faq + .faq {
   margin-top: 0;
 }
-
 .faq-answer + .faq-question {
   margin-top: 10px;
 }
@@ -1240,7 +1085,7 @@ html {
 /* General layout and scroll fixes */
 html, body {
   width: 100%;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 html, body {
   margin: 0;
@@ -1256,9 +1101,9 @@ html, body {
   padding: 200px 0 150px;
 }
 
-/* Гамбургер іконка */
+/* Hamburger icon */
 .hamburger {
-  display: none; /* ховаємо на десктопах */
+  display: none;
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
@@ -1266,27 +1111,21 @@ html, body {
   height: 20px;
   justify-content: center;
 }
-
 .hamburger span {
   height: 3px;
   background: #D4AF37;
   border-radius: 2px;
   transition: 0.3s;
 }
-
-/* Показуємо гамбургер на мобільних */
+/* Show hamburger on mobile */
 @media (max-width: 900px) {
   .hamburger {
     display: flex;
   }
 }
-
 .nav-links.active {
   display: block;
 }
-
-
-/* За замовчуванням гамбургер прихований */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -1297,15 +1136,11 @@ html, body {
   cursor: pointer;
   z-index: 1000;
 }
-
-/* Показуємо гамбургер на мобільних */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
   }
 }
-
-/* Стилі для смужок */
 .hamburger span {
   display: block;
   height: 4px;
@@ -1318,12 +1153,10 @@ html, body {
   transform: rotate(45deg) translate(7px, 7px);
   background: #b08a2e;
 }
-
 .hamburger.active span:nth-child(2) {
   opacity: 0;
   transform: translateX(25px);
 }
-
 .hamburger.active span:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -7px);
   background: #b08a2e;
@@ -1332,49 +1165,41 @@ html, body {
   #team .team-member {
     width: 80%;
     padding: 8px 10px;
-    margin: 0 auto; 
-  }
-
-  #team .team-member img {
-    width: 120px;
-    height: 120px; 
     margin: 0 auto;
   }
-
+  #team .team-member img {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+  }
   #team .team-member h3 {
     font-size: 1.1rem;
     margin-top: 8px;
   }
-
   #team .team-member p {
     font-size: 0.85rem;
     margin-top: 6px;
     color: #777;
   }
-
   #team .carousel-controls button {
     font-size: 20px;
     padding: 12px;
     width: 45px;
     height: 45px;
   }
-
   #team .team-carousel {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
 }
-
-
 @media (min-width: 769px) {
   .carousel-item {
-    flex: 0 0 33.3333% !important; /* 3 картинки в ряд */
-    padding-bottom: 33.3333% !important; /* квадратна пропорція */
+    flex: 0 0 33.3333% !important;
+    padding-bottom: 33.3333% !important;
     position: relative !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
-  
   .carousel-item img {
     position: absolute !important;
     top: 0 !important;
