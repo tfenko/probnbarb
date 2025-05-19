@@ -1,15 +1,18 @@
 console.log('script.js завантажений і виконується');
-document.addEventListener("DOMContentLoaded", () => {
 
-  // Initialize AOS animation library
+document.addEventListener("DOMContentLoaded", () => {
+  // ============================
+  // Ініціалізація AOS
+  // ============================
   AOS.init();
 
-  // Modal booking logic
+  // ============================
+  // Модальне вікно "Book Now"
+  // ============================
   const bookNowBtnNavbar = document.querySelectorAll("#bookNowBtnNavbar");
   const modal = document.getElementById("bookingModal");
   const closeModalBtn = document.getElementById("closeModal");
 
-  // Show modal on "Book Now" button click
   bookNowBtnNavbar.forEach(button => {
     button.addEventListener("click", (event) => {
       event.preventDefault();
@@ -18,13 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close modal on close button click
   closeModalBtn.addEventListener("click", () => {
     modal.classList.remove("show");
     document.body.style.overflow = "auto";
   });
 
-  // Close modal when clicking outside the modal content
   window.addEventListener("click", (event) => {
     if (event.target === modal) {
       modal.classList.remove("show");
@@ -32,76 +33,112 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Ensure modal is closed on page load
   window.addEventListener("load", () => {
     modal.classList.remove("show");
     document.body.style.overflow = "auto";
   });
 
-  // Smooth scroll for navigation links
+  // ============================
+  // Плавний скрол для навігації
+  // ============================
   document.querySelectorAll(".nav-links a").forEach(link => {
     link.addEventListener("click", (event) => {
       const href = link.getAttribute("href");
       if (href === "#") return;
-      
+
       const targetId = href.substring(1);
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
         event.preventDefault();
-        targetElement.scrollIntoView({
-          behavior: "smooth"
-        });
+        targetElement.scrollIntoView({ behavior: "smooth" });
       }
     });
   });
 
-  // Carousel logic
+  // ============================
+  // Карусель для галереї
+  // ============================
   const carousel = document.getElementById('carousel');
   const items = document.querySelectorAll('.carousel-item');
-  const galleryBtn = document.getElementById('galleryBtn');
-  const galleryBtn2 = document.getElementById('galleryBtn2');
+  const galleryBtnPrev = document.getElementById('galleryBtn');
+  const galleryBtnNext = document.getElementById('galleryBtn2');
 
-  let currentIndex1 = 0;
+  let currentIndexGallery = 0;
 
-  // Show carousel slide by index
-  function showSlideCarousel(index) {
+  function showSlideGallery(index) {
     if (index < 0) index = items.length - 1;
     if (index >= items.length) index = 0;
 
-    // Reset carousel if at the last slide
+    // Скидання прокрутки при досягненні останнього слайда (опційно)
     if (index === 7) {
       setTimeout(() => {
         carousel.style.transition = 'transform 0.3s ease-in-out';
         carousel.style.transform = `translateX(0%)`;
-        currentIndex1 = 0;
+        currentIndexGallery = 0;
       }, 300);
     } else {
       carousel.style.transition = 'transform 0.3s ease-in-out';
       carousel.style.transform = `translateX(-${index * 33.33}%)`;
-      currentIndex1 = index;
+      currentIndexGallery = index;
     }
   }
 
-  // Carousel navigation buttons
-  galleryBtn.addEventListener('click', () => {
-    showSlideCarousel(currentIndex1 - 1);
-  });
-  galleryBtn2.addEventListener('click', () => {
-    showSlideCarousel(currentIndex1 + 1);
+  galleryBtnPrev.addEventListener('click', () => {
+    showSlideGallery(currentIndexGallery - 1);
   });
 
-  // Auto-slide carousel every 5 seconds
+  galleryBtnNext.addEventListener('click', () => {
+    showSlideGallery(currentIndexGallery + 1);
+  });
+
   setInterval(() => {
-    showSlideCarousel(currentIndex1 + 1);
+    showSlideGallery(currentIndexGallery + 1);
   }, 5000);
 
-  // Review form logic
+  // ============================
+  // Карусель для команди
+  // ============================
+  const btnPrevTeam = document.getElementById('teamBtn');
+  const btnNextTeam = document.getElementById('teamBtn2');
+  const teamTrack = document.querySelector('#team .team-track');
+  const teamMembers = document.querySelectorAll('#team .team-member');
+
+  if (btnPrevTeam && btnNextTeam && teamTrack && teamMembers.length > 0) {
+    let currentTeamIndex = 0;
+    const visibleTeamCount = 3;
+
+    function updateTeamCarousel() {
+      teamTrack.style.transform = `translateX(-${(currentTeamIndex * 100) / visibleTeamCount}%)`;
+    }
+
+    btnPrevTeam.addEventListener('click', () => {
+      currentTeamIndex = (currentTeamIndex - 1 + (teamMembers.length - visibleTeamCount + 1)) % (teamMembers.length - visibleTeamCount + 1);
+      updateTeamCarousel();
+    });
+
+    btnNextTeam.addEventListener('click', () => {
+      currentTeamIndex = (currentTeamIndex + 1) % (teamMembers.length - visibleTeamCount + 1);
+      updateTeamCarousel();
+    });
+
+    updateTeamCarousel();
+
+    setInterval(() => {
+      currentTeamIndex = (currentTeamIndex + 1) % (teamMembers.length - visibleTeamCount + 1);
+      updateTeamCarousel();
+    }, 3000);
+  } else {
+    console.warn('Елементи каруселі команди не знайдені!');
+  }
+
+  // ============================
+  // Логіка форми відгуків
+  // ============================
   const form = document.getElementById("reviewForm");
   const ratingStars = document.querySelectorAll(".rating span");
   const ratingInput = document.getElementById("reviewRating");
 
-  // Handle star rating selection
   ratingStars.forEach(star => {
     star.addEventListener("click", () => {
       const rating = star.getAttribute("data-value");
@@ -110,12 +147,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Load and display saved reviews from localStorage
   const reviewsList = document.getElementById("reviewsList");
   const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
   savedReviews.forEach(addReviewToPage);
 
-  // Handle review form submission
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -139,7 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Add a review to the page
   function addReviewToPage({ name, text, rating, date, time }) {
     const div = document.createElement("div");
     div.classList.add("review");
@@ -152,35 +186,34 @@ document.addEventListener("DOMContentLoaded", () => {
     reviewsList.prepend(div);
   }
 
-  // FAQ toggle logic (show/hide answers)
-  const questions = document.querySelectorAll(".faq-question");
-
-  questions.forEach(q => {
-    q.addEventListener("click", function() {
-      const answer = q.nextElementSibling;
-      answer.style.display = answer.style.display === "block" ? "none" : "block";
-    });
-  });
-
-  // FAQ toggle logic with 'show' class
-  document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
+  // ============================
+  // FAQ toggle logic
+  // ============================
+  document.querySelectorAll(".faq-question").forEach(question => {
+    question.addEventListener("click", () => {
       const answer = question.nextElementSibling;
-      answer.classList.toggle('show');
+      answer.classList.toggle("show");
     });
   });
 
-  // Scroll to FAQ section on FAQ button click
-  //document.querySelector('.faq-button').addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   const faqHeader = document.getElementById('faq-header');
-  //   window.scrollTo({
-  //     top: faqHeader.offsetTop - 20,
-  //     behavior: 'smooth'
-  //   });
-  // });
+  // ============================
+  // Smooth scroll для FAQ кнопки і всіх якорів
+  // ============================
+  // Якщо є кнопка з класом faq-button, то можна раскоментувати і використовувати:
+  /*
+  const faqButton = document.querySelector('.faq-button');
+  if (faqButton) {
+    faqButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const faqHeader = document.getElementById('faq-header');
+      window.scrollTo({
+        top: faqHeader.offsetTop - 20,
+        behavior: 'smooth'
+      });
+    });
+  }
+  */
 
-  // Smooth scroll for all anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -191,51 +224,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Special scroll for FAQ anchor link
-  document.querySelector('a[href="#faq"]').addEventListener('click', function (e) {
-    e.preventDefault();
-    window.scrollTo({
-      top: document.querySelector('#faq-header').offsetTop - 10,
-      behavior: 'smooth'
+  document.querySelectorAll('a[href="#faq"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const faqHeader = document.getElementById('faq-header');
+      if (faqHeader) {
+        window.scrollTo({
+          top: faqHeader.offsetTop - 10,
+          behavior: 'smooth'
+        });
+      }
     });
   });
 
- document.addEventListener('DOMContentLoaded', () => {
-  const btnPrev = document.getElementById('teamBtn');
-  const btnNext = document.getElementById('teamBtn2');
-  const track = document.querySelector('#team .team-track');
-  const members = document.querySelectorAll('#team .team-member');
-
-  console.log('btnPrev:', btnPrev);
-  console.log('btnNext:', btnNext);
-  console.log('track:', track);
-  console.log('members count:', members.length);
-
-  if (!btnPrev || !btnNext || !track || members.length === 0) {
-    console.error('Не всі елементи знайдені');
-    return;
-  }
-
-  let current = 0;
-  const visible = 3;
-
-  function updateCarousel() {
-    track.style.transform = `translateX(-${(current * 100) / visible}%)`;
-  }
-
-  btnPrev.addEventListener('click', () => {
-    current = (current - 1 + (members.length - visible + 1)) % (members.length - visible + 1);
-    updateCarousel();
-  });
-
-  btnNext.addEventListener('click', () => {
-    current = (current + 1) % (members.length - visible + 1);
-    updateCarousel();
-  });
-
-  updateCarousel();
-});
-  // Service prices
+  // ============================
+  // Логіка оновлення цін на послуги
+  // ============================
   const prices = {
     haircut: 430,
     clipperCut: 380,
@@ -251,7 +255,6 @@ document.addEventListener("DOMContentLoaded", () => {
     hairlineOutline: 280
   };
 
-  // Service price update logic
   const serviceSelect = document.getElementById('service');
   const priceDisplay = document.getElementById('price-value');
 
@@ -261,17 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
     priceDisplay.textContent = price ? `${price} USD` : '-';
   }
 
-  // Update price on service selection change
   serviceSelect.addEventListener('change', updatePrice);
 
-  // Set initial price
   updatePrice();
-
 });
-
-// Scroll to top on page load (after a short delay)
-// window.addEventListener('load', () => {
-//   setTimeout(() => {
-//     window.scrollTo(0, 0);
-//   }, 100);
-// });
